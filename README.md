@@ -89,13 +89,13 @@ dotnet run
 
 ## 🧪 Pruebas con Postman
 
-Se incluye una colección de pruebas automatizadas para Postman.
+Se incluye una colección de Postman para probar los endpoints de la API.
 
 ### Importar la colección
 
 1. Abrir Postman  
 2. Clic en **Importar**  
-3. Seleccionar el archivo `Postman/Test Prueba Técnica Encode.postman_collection.json` incluido en este repositorio  
+3. Seleccionar el archivo `Postman/test-encode-api.postman_collection.json` incluido en este repositorio  
 4. Ejecutar las peticiones contra `https://localhost:7033`
 
 ---
