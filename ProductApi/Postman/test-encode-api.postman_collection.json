@@ -1,0 +1,257 @@
+{
+	"info": {
+		"_postman_id": "f5c950b4-7928-4b6d-9cb4-dfe8d998f97e",
+		"name": "test-encode-api",
+		"description": "## 📝Descripción general\n\nEsta colección contiene las operaciones CRUD completas de la API REST `encode-product-api` para la prueba técnica de Encode.\n\nIncluye solicitudes `GET`, `POST`, `PUT` y `DELETE`, junto con ejemplos de entrada/salida y pruebas automáticas básicas.\n\n## 📌Endpoints\n\n| **Método** | **Endpoint** | **Descripción** |\n| --- | --- | --- |\n| GET | /api/Products | Obtener todos los productos |\n| GET | /api/Products/{id} | Obtener un producto por ID |\n| POST | /api/Products | Crear un nuevo producto |\n| PUT | /api/Products/{id} | Actualizar un producto existente |\n| DELETE | /api/Productos/{id} | Eliminar un producto por ID |\n\n## 📋 Requisitos\n\n- .NET 6 o superior\n    \n- API en ejecución en `https://localhost:{puerto}/api/Products`\n    \n- Base de datos en memoria (SQLite)\n    \n\n## ✅ Pruebas automáticas\n\nCada solicitud contiene pruebas automáticas básicas que verifican:\n\n- Código de estado HTTP (200, 201, 204, 404, etc.)\n    \n- Estructura de la respuesta\n    \n- Mensajes de error personalizados en caso de fallo\n    \n\n### 📫 Cómo importar la colección de Postman\n\n1. Abrir Postman.\n    \n2. En la parte superior izquierda, hacer clic en el botón **\"Import\"**.\n    \n3. Seleccionar la pestaña **\"Upload Files\"**.\n    \n4. Buscar el archivo Test Prueba Técnica Encode.postman_collection.json (incluido en este repositorio).\n    \n5. Hacé clic en **\"Open\"** y luego en **\"Import\"**.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36693338"
+	},
+	"item": [
+		{
+			"name": "Get - Todos los productos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7033/api/Products",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7033",
+					"path": [
+						"api",
+						"Products"
+					]
+				},
+				"description": "Esta es una solicitud **GE**T que se utiliza para obtener datos de un endpoint. No hay cuerpo de solicitud para una solicitud GET, pero se pueden usar parámetros de consulta para especificar el recurso del que se desean obtener los datos (por ejemplo, en esta solicitud, tenemos `id=1`).  \nUna respuesta GET exitosa tendrá un estado **200 OK** y debe incluir algún tipo de cuerpo de respuesta, por ejemplo, contenido web HTML o datos JSON."
+			},
+			"response": []
+		},
+		{
+			"name": "Post - Crear producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Jugo\",\n  \"description\": \"Tang\",\n  \"price\": 500,\n  \"quantity\": 120\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7033/api/Products",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7033",
+					"path": [
+						"api",
+						"Products"
+					]
+				},
+				"description": "Esta es una solicitud **POST** que envía datos a una API a través del cuerpo de la solicitud. Esta solicitud envía datos JSON, que se reflejan en la respuesta.\n\nUna solicitud POST exitosa suele devolver un código de respuesta **200 OK** o **201 Created**."
+			},
+			"response": []
+		},
+		{
+			"name": "Get - Producto por Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7033/api/Products/7",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7033",
+					"path": [
+						"api",
+						"Products",
+						"7"
+					]
+				},
+				"description": "Esta es una solicitud **GET** que se utiliza para obtener un producto específico a partir de su identificador único (`id`). No requiere cuerpo de solicitud, ya que el parámetro `id` se pasa directamente en la URL (por ejemplo: `/api/Products/1`).\n\nUna respuesta exitosa devolverá un código de estado **200 OK** y un objeto **JSON** con los datos del producto solicitado.\n\nSi el producto con el ID especificado no existe, se devolverá una respuesta con código de estado **404 Not Found.**"
+			},
+			"response": []
+		},
+		{
+			"name": "Update - Actualizar producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful PUT request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 4,\n  \"name\": \"Gaseosa Sprite\",\n  \"description\": \"Prueba Actualizar\",\n  \"price\": 1250,\n  \"quantity\": 74\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7033/api/Products/4",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7033",
+					"path": [
+						"api",
+						"Products",
+						"4"
+					]
+				},
+				"description": "Esta es una solicitud **PUT** que se utiliza para sobrescribir datos existentes. Por ejemplo, después de crear una entidad con una solicitud POST, es posible que desee modificarla posteriormente. Puede hacerlo mediante una solicitud PUT. Normalmente, la entidad que se actualiza se identifica incluyendo un identificador en la URL (p. ej., `id=2`).\n\nUna solicitud PUT exitosa suele devolver un código de respuesta **200 OK**, **201 Created** o **204 No Content response code**."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete - Eliminar producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful DELETE request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+							"});",
+							"",
+							"pm.test(\"Status code is 204 (No Content)\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7033/api/Products/10",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7033",
+					"path": [
+						"api",
+						"Products",
+						"10"
+					]
+				},
+				"description": "Esta es una solicitud **DELETE** que se utiliza para eliminar datos creados previamente mediante una solicitud POST. Normalmente, la entidad que se actualiza se identifica incluyendo un identificador en la URL (p. ej., `id=8`).  \nUna solicitud DELETE exitosa suele devolver un código de respuesta **200 OK**, **202 Accepted** o **204 No Content response code**."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}
